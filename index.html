@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foodie Restaurant</title>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <button id="scrollTopBtn">⬆</button>
+    <header>
+        <nav class="navbar">
+            <h2 class="logo">Foodie<span>Hub</span></h2>
+          
+            <ul class="nav-links">
+            <li> <a href="#home">Home</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+
+        <button class="cart-btn" id="openCartBtn">
+            🛒Cart(<span id="cartCount">0</span>)
+        </button>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Delicious Food Delivered Fast 🍔</h1>
+            <p>Order your favourite meals from FoodieHub in just one click.</p>
+            <a href="#menu" class="btn">Explore Menu</a>
+        </div>
+    </section>
+
+
+    <section class="menu-section" id="menu">
+        <h2 class="title">Our Menu</h2>
+
+         <input type="text" id="searchFood" placeholder="Search food..." class="search-box">
+               
+               <select id="foodFilter" class="filter-box">
+    <option value="all">All</option>
+    <option value="burger">Burger</option>
+    <option value="pizza">Pizza</option>
+    <option value="pasta">Pasta</option>
+    <option value="snacks">Snacks</option>
+    <option value="dessert">Dessert</option>
+    <option value="drink">Drink</option>
+</select>
+
+        <div class="menu-container" >
+        <div class="menu-card" data-category="burger">
+                <img src="burger.jpg" alt="Burger">
+                <h3>Cheese Burger</h3>
+                <p>Juicy Burger with Cheese and fresh veggies.</p>
+                <h4>₹150</h4>
+                
+
+                <button class="add-btn" onclick="addToCart('Cheese Burger',150)">Add to Cart</button>
+            </div>
+            <div class="menu-card" data-category="pizza">
+                <img src="pizza.jpg" alt="Pizza">
+                <h3>Italian Pizza</h3>
+                <p>Hot cheesy pizza with Italian topping</p>
+                <h4>₹250</h4>
+             
+
+                <button class="add-btn" onclick="addToCart('Italian Pizza',250)">Add to Cart</button>
+            </div>
+            <div class="menu-card" data-category="pasta">
+                <img src="pasta.jpg" alt="Pasta">
+                <h3>White Sauce Pasta</h3>
+                <p>Creamy pasta with delicious white sauce.</p>
+                <h4>₹200</h4>
+                
+
+                <button class="add-btn" onclick="addToCart('White Sauce Pasta',200)">Add to Cart</button>
+            </div>
+            <div class="menu-card" data-category="snacks">
+                <img src="fries.jpg" alt="French Fries">
+                <h3>French Fries</h3>
+                <p>Crunchy fries with special seasoning</p>
+                <h4>₹100</h4>
+                <button class="add-btn" onclick="addToCart('French Fries',100)">Add to Cart</button>    
+            </div>
+
+            <div class="menu-card" data-category="dessert" >
+                <img src="cake.jpeg" alt="Dessert">
+                <h3>Chocolate Cake</h3>
+                <p>Soft chocolate cake with creamy chocolate topping</p>
+                <h4>₹180</h4>
+                <button class="add-btn" onclick="addToCart('Chocolate Cake',180)">Add to Cart</button>
+            </div>
+
+            <div class="menu-card" data-category="drink">
+                <img src="coffee.avif" alt="Cold Coffee">
+                <h3>Cold Coffee</h3>
+                <p>Chilled coffee blended with rich chocolate flavor</p>
+                <h4>₹120</h4>
+                <button class="add-btn" onclick="addToCart('Cold Coffe',120)">Add to Cart</button>
+            </div>
+            <div class="menu-card" data-category="drink">
+                <img src="mocktail.jpeg" alt="Chilled Mocktail">
+                <h3>Mocktail</h3>
+                <p>Refreshing chilled mocktail with a fruity flavor.</p>
+                <h4>₹140</h4>
+                 <button class="add-btn" onclick="addToCart('Mocktail',140)">Add to Cart</button>
+            </div>
+        </div>
+   
+    </section>
+
+
+    <section class="about-section" id="about">
+        <h2 class="title">About Us</h2>
+        <p>FoodieHub is a modern restaurant website where customer can order delicious meals online.
+            We Provide fresh ingredients, fast delivery,and the best taste in town.
+        </p>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2 class="title">Contact Us</h2>
+        <p>Email: foodiehub@gmail.com</p>
+        <p>Phone: +91 7756884229</p>
+        <p class="para">Location: Narhe,Pune 411041</p>
+    </section>
+    <footer>
+        <p>&copy;2026 FoodieHub Restaurant | All Rights Reserved</p>
+    </footer>
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-box">
+            <h2>Your Cart🛒</h2>
+
+            <div id="cartItems"></div>
+            <h3>Total:rs<span id="totalPrice">0</span></h3>
+   
+        <h2 style="margin-top:20px;">Order Detail</h2>
+        <input type="text" id="cusName" placeholder="Enter your Name" class="input-box">
+        <input type="text" id="cusMobile" placeholder="Enter Mobile number" class="input-box">
+        <textarea id="cusAddress" placeholder="Enter Delivery Address" class="input-box"></textarea>
+            
+        <select id="paymentMode" class="input-box">
+            <option value="">Select Payment Mode</option>
+            <option value="Cash on Delivery">Cash on Delivery</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Card</option>
+        </select>
+
+
+<div class="cart-actions">
+        <button class="btn close-btn" id="closeCartBtn">Close</button>
+        <button class="btn checkout-btn" onclick="checkout()"> CheckOut</button>
+     </div>
+     <div id="receipt" class="receipt-box">
+        <h2>🧾 FoodieHub Receipt</h2>
+        <p><b>Name:</b> <span id="rName"></span></p>
+        <p><b>Mobile:</b> <span id="rMobile"></span></p>
+        <p><b>Address:</b> <span id="rAddress"></span></p>
+        <p><b>Payment:</b> <span id="rPayment"></span></p>
+
+        <h3> Order Items:</h3>
+        <div id="rItems"></div>
+        <h3>Total Bill: rs<span id="rTotal"></span></h3>
+        <button class="print-btn" onclick="printReceipt()">🖨️Print Receipt</button>
+     </div>
+    </div>
+    </div>
+    <div id="toast"></div>
+    <script src="script.js"></script>
+</body>
+</html>
